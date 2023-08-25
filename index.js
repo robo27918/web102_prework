@@ -30,7 +30,7 @@ function addGamesToPage(games) {
 
     // loop over each item in the data
     for (let i = 0; i < games.length; i ++){
-        console.log("printing here",games[i])
+        
    
 
         // create a new div element, which will become the game card
@@ -72,7 +72,7 @@ const contributionsCard = document.getElementById("num-contributions");
 const totContributions = GAMES_JSON.reduce((acc,game) =>{
                                     return acc + game.backers;
                                 }, 0);
-console.log("total contributions:",totContributions)
+
 // set the inner HTML using a template literal and toLocaleString to get a number with commas
 contributionsCard.innerHTML = `${totContributions.toLocaleString('en-US')}`
 
@@ -82,12 +82,12 @@ const moneyRaised = GAMES_JSON.reduce( (acc,game) => {
                                             return acc+ game.pledged
                                             },0);
 // set inner HTML using template literal
-console.log("money raised is:", moneyRaised)
+//console.log("money raised is:", moneyRaised)
 raisedCard.innerHTML = `$${moneyRaised.toLocaleString('en-US')}`
 
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
-console.log("getting the number of games:", GAMES_JSON.length)
+//console.log("getting the number of games:", GAMES_JSON.length)
 gamesCard.innerHTML = `${GAMES_JSON.length}`
 /*************************************************************************************
  * Challenge 5: Add functions to filter the funded and unfunded games
@@ -103,8 +103,8 @@ function filterUnfundedOnly() {
     const listOfUnfundedGames = GAMES_JSON.filter( (game) =>{
         return game.pledged < game.goal;
     });
-    console.log("from inside the function...")
-    console.log("length of unfundedlist:", listOfUnfundedGames.length)
+    //console.log("from inside the function...")
+    //console.log("length of unfundedlist:", listOfUnfundedGames.length)
 
     // use the function we previously created to add the unfunded games to the DOM
     addGamesToPage(listOfUnfundedGames);
@@ -121,7 +121,7 @@ function filterFundedOnly() {
     const listOfFundedGames = GAMES_JSON.filter((game) =>{
         return game.pledged>=game.goal
     });
-    console.log("length of fundedlist", listOfFundedGames.length)
+    //console.log("length of fundedlist", listOfFundedGames.length)
 
 
     // use the function we previously created to add unfunded games to the DOM
@@ -157,7 +157,7 @@ const descriptionContainer = document.getElementById("description-container");
 // use filter or reduce to count the number of unfunded games
 const unfundedCount = GAMES_JSON.filter((game) =>{
     return game.pledged>=game.goal}).length;
-console.log("CHALLENGE 6: the number of unfunded games is ", unfundedCount)
+//console.log("CHALLENGE 6: the number of unfunded games is ", unfundedCount)
 // create a string that explains the number of unfunded games using the ternary operator
 const displayStr = `A total of $100,000 has been raised for 4 games. 
                     Currenlty ${ unfundedCount >1 ? "games":"game"} remains 
@@ -178,11 +178,11 @@ const secondGameContainer = document.getElementById("second-game");
 const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
     return item2.pledged - item1.pledged;
 });
-console.log("CHALLENGE 7, sorted ganes", sortedGames)
+
 // use destructuring and the spread operator to grab the first and second games
  var topGame, secondTopGame, rest // this is an object format
  [topGame, secondTopGame,...rest] = sortedGames
- console.log("The games are: ", topGame.name, " and ", secondTopGame)
+ 
 // create a new element to hold the name of the top pledge game, then append it to the correct element
 const top_game_element = document.createElement("p")
 top_game_element.innerHTML= topGame.name
