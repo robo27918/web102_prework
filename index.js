@@ -57,7 +57,7 @@ function addGamesToPage(games) {
 
 // call the function we just defined using the correct variable
 // later, we'll call this function using a different list of games
-addGamesToPage(GAMES_JSON)
+//addGamesToPage(GAMES_JSON)
 
 /*************************************************************************************
  * Challenge 4: Create the summary statistics at the top of the page displaying the
@@ -129,7 +129,8 @@ function filterFundedOnly() {
 }
 filterFundedOnly()
 // show all games
-function showAllGames() {
+function showAllGames(e) {
+    e.preventDefault();
     deleteChildElements(gamesContainer);
 
     // add all games from the JSON data to the DOM
@@ -192,3 +193,28 @@ firstGameContainer.append(top_game_element)
 const second_top_game_element =document.createElement("p")
 second_top_game_element.innerHTML = secondTopGame.name
 secondGameContainer.append(second_top_game_element)
+
+function onClickSearch(e){
+    e.preventDefault()
+    deleteChildElements(gamesContainer)
+    console.log("clicked the search button...")
+    const searchValue = document.getElementById("search_query").value.toLowerCase()
+
+    const searchResult = GAMES_JSON.filter(g => {if (g.name.toLowerCase()=== searchValue) return g}); // returns an array with object 
+    console.log("searchResult ",searchResult )
+    if (searchResult.length >=1){
+        addGamesToPage(searchResult)
+    }
+    
+    
+
+}
+
+
+// adding search game capabilites
+const searchButton = document.getElementById("search-btn")
+searchButton.addEventListener("click", onClickSearch )
+
+// getting the text from the input element
+//const user_query = document.getElementById("search_query").value
+//console.log("user_query is: ", user_query)
